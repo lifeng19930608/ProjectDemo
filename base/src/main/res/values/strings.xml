@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    tools:ignore="ExtraTranslation"
+
     <string name="app_name">ShareAndLogin</string>
-    <string name="share_to" tools:ignore="ExtraTranslation">分享到</string>
+    <string name="share_to">分享到</string>
     <string name="sina_weibo">新浪微博</string>
     <string name="wechat">微信</string>
     <string name="wechat_moments">朋友圈</string>
@@ -15,4 +17,5 @@
     <string name="login_cancel">登陆取消</string>
     <string name="login_fail">登陆失败</string>
     <string name="login_error">未安装客户端或者客户端版本太低</string>
+
 </resources>

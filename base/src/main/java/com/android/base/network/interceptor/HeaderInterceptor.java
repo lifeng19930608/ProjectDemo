@@ -22,6 +22,7 @@ import static android.os.Build.SERIAL;
  */
 
 public class HeaderInterceptor implements Interceptor {
+
     @Override
     public Response intercept(Chain chain) throws IOException {
 
@@ -37,6 +38,7 @@ public class HeaderInterceptor implements Interceptor {
                 .build();
 
         Response response = chain.proceed(build);
+        //这里可以统一处理服务端的错误码以及数据的加密解密操作
         int code = response.code();
         handlerErrorCode(code);
         return response;

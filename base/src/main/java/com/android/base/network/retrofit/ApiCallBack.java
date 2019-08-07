@@ -1,6 +1,10 @@
 package com.android.base.network.retrofit;
 
-import com.android.base.config.ServerCode;
+import com.android.base.network.ServerCode;
+import com.google.gson.JsonSyntaxException;
+
+import java.net.ConnectException;
+import java.net.NoRouteToHostException;
 
 import io.reactivex.observers.DisposableObserver;
 import retrofit2.HttpException;
@@ -33,18 +37,22 @@ public abstract class ApiCallBack<M> extends DisposableObserver<M> {
             HttpException httpException = (HttpException) e;
             int code = httpException.code();
             String message = httpException.message();
-            if (code == 502 || code == 404) {
-                message = "服务器异常，请稍后重试";
-            } else if (code == 504) {
-                message = "网络不给力";
+            if (code == ServerCode.NETWORK_ERROR_502 || code == ServerCode.NETWORK_ERROR_404) {
+                message = ServerCode.NETWORK_ERROR_1;
+            } else if (code == ServerCode.NETWORK_ERROR_504) {
+                message = ServerCode.NETWORK_ERROR_2;
             }
             onFailure(code, message);
+        } else if (e instanceof NoRouteToHostException) {
+            onFailure(ServerCode.N0_ROUTE_TO_HOST, ServerCode.NETWORK_ERROR_1);
+        } else if (e instanceof ConnectException) {
+            onFailure(ServerCode.CONNECT_ERROR, ServerCode.NETWORK_ERROR_2);
+        } else if (e instanceof JsonSyntaxException) {
+            onFailure(ServerCode.JSON_SYNTAX, ServerCode.NETWORK_ERROR_3);
         } else {
-            onFailure(ServerCode.UNKNOWN_ERROR, "未知错误");
+            onFailure(ServerCode.UNKNOWN_ERROR, ServerCode.NETWORK_ERROR_4);
         }
-        //ConnectException
         onFinish();
-
     }
 
     @Override

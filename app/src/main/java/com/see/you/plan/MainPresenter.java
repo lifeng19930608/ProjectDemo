@@ -19,28 +19,7 @@ public class MainPresenter extends BasePresenter<MainView> {
         attachView(mainView);
     }
 
-//    public void loadData(String id) {
-//        view.showLoading();
-//        onSubscribe(urlApi.loadData(id), new ApiCallBack<BaseModel<MainModel>>() {
-//
-//            @Override
-//            public void onSuccess(BaseModel<MainModel> model) {
-//                view.getDataSuccess(model.data);
-//            }
-//
-//            @Override
-//            public void onFailure(int code, String message) {
-//                view.getDataFail(message);
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                view.hideLoading();
-//            }
-//        });
-//    }
-
-    public void version(String version,int pla){
+    public void version(String version, int pla) {
         view.showLoading();
         onSubscribe(urlApi.checkUpdate(version, pla), new ApiCallBack<BaseModel<NewVersionBean>>() {
             @Override
@@ -50,7 +29,7 @@ public class MainPresenter extends BasePresenter<MainView> {
 
             @Override
             public void onFailure(int code, String message) {
-                view.getDataFail(message);
+                view.getDataFail(code + "   " + message);
             }
 
             @Override
