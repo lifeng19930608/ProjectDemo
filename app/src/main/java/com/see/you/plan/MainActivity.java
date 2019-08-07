@@ -22,6 +22,9 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
 //                presenter.loadData("101310222");
                 presenter.version("0.9.0", 10);
                 ShareBottomDialog shareBottomDialog = new ShareBottomDialog(MainActivity.this);
+                shareBottomDialog.setTitle("分享测试");
+                shareBottomDialog.setText("分享测试内容");
+                shareBottomDialog.setUrl("http://www.baidu.com");
                 shareBottomDialog.show();
             }
         });

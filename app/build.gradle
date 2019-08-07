@@ -14,8 +14,28 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+    }
+    signingConfigs {
+        release {
+            keyAlias 'dao'
+            keyPassword '123456'
+            storeFile file('bincai.jks')
+            storePassword '123456'
+        }
+        debug {
+            keyAlias 'dao'
+            keyPassword '123456'
+            storeFile file('bincai.jks')
+            storePassword '123456'
         }
     }
 }

@@ -1,19 +1,11 @@
 package com.android.base.mob.share;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.android.base.R;
 import com.android.base.base.BaseActivity;
+import com.android.base.base.BaseBottomDialog;
 import com.android.base.mob.listener.MobActionListener;
 import com.android.base.utils.ToastUtils;
 
@@ -30,7 +22,7 @@ import cn.sharesdk.framework.PlatformActionListener;
  * version : 1.0
  */
 
-public class ShareBottomDialog extends Dialog implements View.OnClickListener {
+public class ShareBottomDialog extends BaseBottomDialog implements View.OnClickListener {
 
     private BaseActivity activity;
     private ShareManager shareManager;
@@ -47,25 +39,7 @@ public class ShareBottomDialog extends Dialog implements View.OnClickListener {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Window window = getWindow();
-        if (window != null) {
-            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-        }
-        setContentView(R.layout.dialog_share);
-        if (window != null) {
-            WindowManager.LayoutParams windowParams = window.getAttributes();
-            windowParams.gravity = Gravity.BOTTOM;
-            windowParams.width = getScreenWidth(activity);
-            windowParams.windowAnimations = R.style.bottom_anim_style;
-            window.setAttributes(windowParams);
-        }
-        init();
-    }
-
-    private void init() {
+    public void init() {
         TextView tv_share_sina_weibo = findViewById(R.id.tv_share_sina_weibo);
         TextView tv_share_wechat = findViewById(R.id.tv_share_wechat);
         TextView tv_share_wechat_moments = findViewById(R.id.tv_share_wechat_moments);
@@ -131,10 +105,9 @@ public class ShareBottomDialog extends Dialog implements View.OnClickListener {
         });
     }
 
-    private int getScreenWidth(Activity activity) {
-        DisplayMetrics metric = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
-        return metric.widthPixels;
+    @Override
+    public int getLayoutId() {
+        return R.layout.dialog_share;
     }
 
     public void setMobActionListener(MobActionListener mobActionListener) {

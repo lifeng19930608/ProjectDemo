@@ -1,8 +1,10 @@
 package com.android.base.network.interceptor;
 
 import android.annotation.SuppressLint;
+import android.provider.Settings;
 
 import com.android.base.config.Key;
+import com.android.base.utils.ContextUtils;
 import com.android.base.utils.SharedPreferencesUtils;
 
 import java.io.IOException;
@@ -10,8 +12,6 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static android.os.Build.SERIAL;
 
 /**
  * author  : 指尖的力量
@@ -34,7 +34,7 @@ public class HeaderInterceptor implements Interceptor {
                 .addHeader("Authorization", token)
                 .addHeader("version", "3.6.1")
                 .addHeader("platform", "1")
-                .addHeader("onlyId", SERIAL)
+                .addHeader("onlyId", Settings.System.getString(ContextUtils.get().getContentResolver(), Settings.System.ANDROID_ID))
                 .build();
 
         Response response = chain.proceed(build);
