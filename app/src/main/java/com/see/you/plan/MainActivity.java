@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.android.base.base.BaseModel;
 import com.android.base.base.MvpActivity;
+import com.android.base.mob.share.ShareBottomDialog;
 import com.android.base.utils.LogUtils;
 import com.android.base.utils.ToastUtils;
 
@@ -20,6 +21,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
             public void onClick(View view) {
 //                presenter.loadData("101310222");
                 presenter.version("0.9.0", 10);
+                ShareBottomDialog shareBottomDialog = new ShareBottomDialog(MainActivity.this);
+                shareBottomDialog.show();
             }
         });
     }
@@ -62,7 +65,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     @Override
     public void getDataFail(String msg) {
         ToastUtils.longShow(msg);
-        LogUtils.i("=========", "akshkajhskakshkajhsk" );
+        LogUtils.i("=========", "akshkajhskakshkajhsk");
     }
 
 

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 29
@@ -28,4 +29,50 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:2.1.1"
     api "io.reactivex.rxjava2:rxjava:2.2.8"
     api 'org.greenrobot:eventbus:3.1.1'
+}
+
+
+MobSDK {
+    appKey "28e330863775e"
+    appSecret "c1f2c8eee257c025e5a0cba6a29e28ee"
+
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            SinaWeibo {
+                appKey "3693555751"
+                appSecret "f62b50beef82d9aba2d520ac8cb3fc01"
+                callbackUri "https://api.weibo.com/oauth2/default.html"
+                shareByAppClient true
+                bypassApproval false
+                enable true
+            }
+            Wechat {
+                appId "wx9b9d665af16b3d63"
+                appSecret "2f8753bd2d2f5179c9beb83dfe6d7cfa"
+                bypassApproval false
+                enable true
+            }
+            WechatMoments {
+                appId "wx9b9d665af16b3d63"
+                appSecret "2f8753bd2d2f5179c9beb83dfe6d7cfa"
+                bypassApproval false
+                enable true
+            }
+            QQ {
+                appId "1105549191"
+                appKey "GjcAUP03KwEKwJYl"
+                shareByAppClient true
+                bypassApproval false
+                enable true
+            }
+            QZone {
+                appId "1105549191"
+                appKey "GjcAUP03KwEKwJYl"
+                shareByAppClient true
+                bypassApproval false
+                enable true
+            }
+        }
+    }
 }

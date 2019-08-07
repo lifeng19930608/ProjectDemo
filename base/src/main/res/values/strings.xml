@@ -1,3 +1,18 @@
-<resources>
-    <string name="app_name">Demo</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">ShareAndLogin</string>
+    <string name="share_to" tools:ignore="ExtraTranslation">分享到</string>
+    <string name="sina_weibo">新浪微博</string>
+    <string name="wechat">微信</string>
+    <string name="wechat_moments">朋友圈</string>
+    <string name="qq">QQ</string>
+    <string name="qzone">QQ空间</string>
+    <string name="copy">复制成功</string>
+    <string name="share_success">分享成功</string>
+    <string name="share_cancel">分享取消</string>
+    <string name="share_fail">分享失败</string>
+    <string name="share_error">未安装客户端或者客户端版本太低</string>
+    <string name="login_success">登陆成功</string>
+    <string name="login_cancel">登陆取消</string>
+    <string name="login_fail">登陆失败</string>
+    <string name="login_error">未安装客户端或者客户端版本太低</string>
 </resources>

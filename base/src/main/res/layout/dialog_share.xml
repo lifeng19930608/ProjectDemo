@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:includeFontPadding="false"
+            android:text="@string/share_to"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/tv_share_sina_weibo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_sina_weibo"
+                android:drawablePadding="7dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/sina_weibo"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_share_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_wechat"
+                android:drawablePadding="7dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/wechat"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_share_wechat_moments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_wechat_moments"
+                android:drawablePadding="7dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/wechat_moments"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/tv_share_qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_qq"
+                android:drawablePadding="7dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/qq"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_share_qzone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_qzone"
+                android:drawablePadding="7dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/qzone"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_share_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_copy"
+                android:drawablePadding="7dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/copy"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
