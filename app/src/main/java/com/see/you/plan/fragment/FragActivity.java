@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
-import com.android.base.base.BaseActivity;
+import com.android.base.base.OverStatusBarActivity;
 import com.see.you.plan.R;
 
 /**
@@ -16,15 +16,13 @@ import com.see.you.plan.R;
  * version : 1.0
  */
 
-public class FragActivity extends BaseActivity {
-
-    private ViewPager pager;
+public class FragActivity extends OverStatusBarActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-        pager = findViewById(R.id.pager);
+        ViewPager pager = findViewById(R.id.pager);
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
     }
 }
