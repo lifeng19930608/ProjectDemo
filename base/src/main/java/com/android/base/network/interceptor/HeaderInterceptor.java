@@ -1,10 +1,9 @@
 package com.android.base.network.interceptor;
 
 import android.annotation.SuppressLint;
-import android.provider.Settings;
 
 import com.android.base.config.Key;
-import com.android.base.utils.ContextUtils;
+import com.android.base.utils.ApplicationUtils;
 import com.android.base.utils.SharedPreferencesUtils;
 
 import java.io.IOException;
@@ -32,9 +31,9 @@ public class HeaderInterceptor implements Interceptor {
         @SuppressLint("HardwareIds") Request build = request.newBuilder()
                 .addHeader("Content-Type", "application/json; charset=UTF-8")
                 .addHeader("Authorization", token)
-                .addHeader("version", "3.6.1")
+                .addHeader("version", ApplicationUtils.getInstance().getVersionName())
                 .addHeader("platform", "1")
-                .addHeader("onlyId", Settings.System.getString(ContextUtils.get().getContentResolver(), Settings.System.ANDROID_ID))
+                .addHeader("onlyId", ApplicationUtils.getInstance().getDeviceId())
                 .build();
 
         Response response = chain.proceed(build);
