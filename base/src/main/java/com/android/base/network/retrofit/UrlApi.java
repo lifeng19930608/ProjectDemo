@@ -1,6 +1,6 @@
 package com.android.base.network.retrofit;
 
-import com.android.base.base.BaseModel;
+import com.android.base.mvp.BaseModel;
 import com.android.base.moudle.NewVersionBean;
 
 import io.reactivex.Observable;

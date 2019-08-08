@@ -2,32 +2,37 @@ package com.see.you.plan;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
-import com.android.base.base.BaseModel;
-import com.android.base.base.MvpActivity;
+import com.android.base.mvp.BaseModel;
+import com.android.base.mvp.MvpActivity;
+import com.android.base.mob.listener.MobActionListener;
+import com.android.base.mob.login.LoginView;
 import com.android.base.mob.share.ShareBottomDialog;
+import com.android.base.moudle.NewVersionBean;
+import com.android.base.utils.FastClickUtils;
+import com.android.base.utils.IntentUtils;
 import com.android.base.utils.LogUtils;
 import com.android.base.utils.ToastUtils;
+import com.see.you.plan.component.ComponentActivity;
+import com.see.you.plan.fragment.FragActivity;
 
-public class MainActivity extends MvpActivity<MainPresenter> implements MainView {
+public class MainActivity extends MvpActivity<MainPresenter> implements MainView, View.OnClickListener {
 
+    private Button share;
+    private Button login;
+    private Button network;
+    private Button fragment;
+    private Button component;
+    private LoginView login_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                presenter.loadData("101310222");
-                presenter.version("0.9.0", 10);
-                ShareBottomDialog shareBottomDialog = new ShareBottomDialog(MainActivity.this);
-                shareBottomDialog.setTitle("分享测试");
-                shareBottomDialog.setText("分享测试内容");
-                shareBottomDialog.setUrl("http://www.baidu.com");
-                shareBottomDialog.show();
-            }
-        });
+        initView();
+        initData();
+        setListener();
     }
 
     @Override
@@ -37,7 +42,12 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
 
     @Override
     protected void initView() {
-
+        share = findViewById(R.id.share);
+        login = findViewById(R.id.login);
+        network = findViewById(R.id.network);
+        fragment = findViewById(R.id.fragment);
+        component = findViewById(R.id.component);
+        login_view = findViewById(R.id.login_view);
     }
 
     @Override
@@ -47,29 +57,88 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
 
     @Override
     protected void setListener() {
+        share.setOnClickListener(this);
+        login.setOnClickListener(this);
+        network.setOnClickListener(this);
+        fragment.setOnClickListener(this);
+        component.setOnClickListener(this);
+        login_view.setMobActionListener(new MobActionListener() {
+            @Override
+            public void onComplete() {
+                LogUtils.i("=====登陆", "onComplete");
+            }
 
+            @Override
+            public void onError() {
+                LogUtils.i("=====登陆", "onError");
+            }
+
+            @Override
+            public void onCancel() {
+                LogUtils.i("=====登陆", "onCancel");
+            }
+        });
     }
-
-//    @Override
-//    public void getDataSuccess(MainModel model) {
-//        MainModel.WeatherinfoBean weatherinfo = model.getWeatherinfo();
-//        String showData = weatherinfo.getCity()
-//                + weatherinfo.getWD()
-//                + weatherinfo.getWS() + weatherinfo.getTime();
-//        TextView textView = findViewById(R.id.text);
-//        textView.setText(showData);
-//    }
 
     @Override
     public void getDataSuccess(BaseModel model) {
         LogUtils.i("=========", "2222222222" + model.status);
+        NewVersionBean bean = (NewVersionBean) model.data;
+        ToastUtils.longShow(model.message);
     }
 
     @Override
     public void getDataFail(String msg) {
         ToastUtils.longShow(msg);
-        LogUtils.i("=========", "akshkajhskakshkajhsk");
     }
 
+
+    @Override
+    public void onClick(View view) {
+        if (FastClickUtils.isFastDoubleClick(String.valueOf(view.getId()))) {
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.share:
+                ShareBottomDialog shareBottomDialog = new ShareBottomDialog(MainActivity.this);
+                shareBottomDialog.setTitle("分享测试");
+                shareBottomDialog.setText("分享测试内容");
+                shareBottomDialog.setUrl("http://www.baidu.com");
+                shareBottomDialog.show();
+                shareBottomDialog.setMobActionListener(new MobActionListener() {
+                    @Override
+                    public void onComplete() {
+                        LogUtils.i("=====分享", "onComplete");
+                    }
+
+                    @Override
+                    public void onError() {
+                        LogUtils.i("=====分享", "onError");
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        LogUtils.i("=====分享", "onCancel");
+                    }
+                });
+                break;
+            case R.id.login:
+                if (login_view.getVisibility() == View.VISIBLE) {
+                    login_view.setVisibility(View.GONE);
+                } else {
+                    login_view.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.network:
+                presenter.version("1.0", 1);
+                break;
+            case R.id.fragment:
+                IntentUtils.startActivity(FragActivity.class);
+                break;
+            case R.id.component:
+                IntentUtils.startActivity(ComponentActivity.class);
+                break;
+        }
+    }
 
 }

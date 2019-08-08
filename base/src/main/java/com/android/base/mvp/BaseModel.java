@@ -1,4 +1,4 @@
-package com.android.base.base;
+package com.android.base.mvp;
 
 /**
  * author  : 指尖的力量

@@ -1,4 +1,4 @@
-package com.android.base.base;
+package com.android.base.mvp;
 
 import com.android.base.network.retrofit.ApiClient;
 import com.android.base.network.retrofit.UrlApi;

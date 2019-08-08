@@ -27,6 +27,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".component.ComponentActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fragment.FragActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

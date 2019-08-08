@@ -1,29 +1,31 @@
-package com.android.base.base;
+package com.android.base.mvp;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.android.base.base.BaseFragment;
+
 /**
  * author  : 指尖的力量
- * date    : 2019-08-07 13:54
+ * date    : 2019-08-08 14:30
  * desc    :
  * modify  :
  * version : 1.0
  */
 
-public abstract class MvpActivity<P extends BasePresenter> extends BaseActivity {
+public abstract class MvpFragment<P extends BasePresenter> extends BaseFragment {
 
     protected P presenter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = createPresenter();
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         if (presenter != null) {
             presenter.detachView();
@@ -31,14 +33,6 @@ public abstract class MvpActivity<P extends BasePresenter> extends BaseActivity 
     }
 
     protected abstract P createPresenter();
-
-    public void showLoading() {
-        showProgressDialog();
-    }
-
-    public void hideLoading() {
-        dismissProgressDialog();
-    }
 
     // 布局的初始化
     protected abstract void initView();
@@ -48,4 +42,5 @@ public abstract class MvpActivity<P extends BasePresenter> extends BaseActivity 
 
     // 控件的监听
     protected abstract void setListener();
+
 }

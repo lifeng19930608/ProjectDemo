@@ -1,4 +1,4 @@
-package com.see.you.plan;
+package com.see.you.plan.fragment;
 
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.BaseView;
@@ -11,7 +11,7 @@ import com.android.base.mvp.BaseView;
  * version : 1.0
  */
 
-public interface MainView extends BaseView {
+public interface FragView extends BaseView {
 
     void getDataSuccess(BaseModel model);
 

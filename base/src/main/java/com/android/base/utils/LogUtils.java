@@ -3,6 +3,8 @@ package com.android.base.utils;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.base.BuildConfig;
+
 /**
  * author  : 指尖的力量
  * date    : 2019-08-06 17:18
@@ -16,7 +18,7 @@ public class LogUtils {
     private static final int LOG_MAX_SHOWN_LENGTH = 5000;
 
     // 控制日志信息是否显示 发布的时候关掉
-    public final static boolean DEBUG = true;
+    public final static boolean DEBUG = BuildConfig.DEBUG;
 
     // 默认的日志过滤Tag (使用工程名)
     public final static String DEFAULT_TAG = "====";
