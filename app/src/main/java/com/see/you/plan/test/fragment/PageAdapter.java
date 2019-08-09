@@ -1,4 +1,4 @@
-package com.see.you.plan.fragment;
+package com.see.you.plan.test.fragment;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

@@ -1,4 +1,4 @@
-package com.see.you.plan.component;
+package com.see.you.plan.test.component;
 
 import android.os.Bundle;
 import android.view.View;

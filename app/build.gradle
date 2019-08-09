@@ -11,6 +11,12 @@ android {
         versionCode 1
         versionName "3.6.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //极光推送
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "0a1418e21a967b6512081c73",
+                JPUSH_CHANNEL: "default_developer",
+        ]
     }
     buildTypes {
         release {

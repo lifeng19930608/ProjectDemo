@@ -1,8 +1,11 @@
-package com.see.you.plan;
+package com.see.you.plan.test;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.core.content.FileProvider;
 
 import com.android.base.mob.listener.MobActionListener;
 import com.android.base.mob.login.LoginView;
@@ -10,13 +13,16 @@ import com.android.base.mob.share.ShareBottomDialog;
 import com.android.base.moudle.NewVersionBean;
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.MvpActivity;
+import com.android.base.utils.ContextUtils;
 import com.android.base.utils.FastClickUtils;
 import com.android.base.utils.IntentUtils;
 import com.android.base.utils.LogUtils;
 import com.android.base.utils.ToastUtils;
-import com.see.you.plan.component.ComponentActivity;
-import com.see.you.plan.fragment.FragActivity;
-import com.see.you.plan.load.LoadActivity;
+import com.see.you.plan.R;
+import com.see.you.plan.app.RealApplication;
+import com.see.you.plan.test.component.ComponentActivity;
+import com.see.you.plan.test.fragment.FragActivity;
+import com.see.you.plan.test.load.LoadActivity;
 
 public class MainActivity extends MvpActivity<MainPresenter> implements MainView, View.OnClickListener {
 

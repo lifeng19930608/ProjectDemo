@@ -1,4 +1,4 @@
-package com.see.you.plan.fragment;
+package com.see.you.plan.test.fragment;
 
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.BaseView;

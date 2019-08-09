@@ -1,4 +1,4 @@
-package com.see.you.plan.load;
+package com.see.you.plan.test.load;
 
 import android.os.Bundle;
 import android.widget.ImageView;

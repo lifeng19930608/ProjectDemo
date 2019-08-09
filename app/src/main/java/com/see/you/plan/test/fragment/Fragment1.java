@@ -1,4 +1,4 @@
-package com.see.you.plan.fragment;
+package com.see.you.plan.test.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

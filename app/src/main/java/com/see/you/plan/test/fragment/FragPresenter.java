@@ -1,8 +1,8 @@
-package com.see.you.plan;
+package com.see.you.plan.test.fragment;
 
+import com.android.base.moudle.NewVersionBean;
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.BasePresenter;
-import com.android.base.moudle.NewVersionBean;
 import com.android.base.network.retrofit.ApiCallBack;
 
 /**
@@ -13,9 +13,9 @@ import com.android.base.network.retrofit.ApiCallBack;
  * version : 1.0
  */
 
-public class MainPresenter extends BasePresenter<MainView> {
+public class FragPresenter extends BasePresenter<FragView> {
 
-    public MainPresenter(MainView mainView) {
+    public FragPresenter(FragView mainView) {
         attachView(mainView);
     }
 

@@ -1,4 +1,4 @@
-package com.see.you.plan;
+package com.see.you.plan.test;
 
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.BaseView;
