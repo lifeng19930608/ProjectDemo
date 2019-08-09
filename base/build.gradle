@@ -54,6 +54,8 @@ dependencies {
     //极光推送
     api 'cn.jiguang.sdk:jpush:3.3.2'
     api 'cn.jiguang.sdk:jcore:2.0.1'
+    //远程数据库依赖
+    api 'com.github.lifeng19930608:ProjectStorage:v1.0.0'
 }
 
 

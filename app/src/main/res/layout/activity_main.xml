@@ -53,6 +53,13 @@
             android:layout_marginTop="10dp"
             android:text="图片加载" />
 
+        <Button
+            android:id="@+id/storage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="数据库" />
+
     </LinearLayout>
 
     <com.android.base.mob.login.LoginView

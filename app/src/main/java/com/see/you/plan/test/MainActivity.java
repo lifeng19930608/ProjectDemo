@@ -1,11 +1,8 @@
 package com.see.you.plan.test;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import androidx.core.content.FileProvider;
 
 import com.android.base.mob.listener.MobActionListener;
 import com.android.base.mob.login.LoginView;
@@ -13,16 +10,16 @@ import com.android.base.mob.share.ShareBottomDialog;
 import com.android.base.moudle.NewVersionBean;
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.MvpActivity;
-import com.android.base.utils.ContextUtils;
 import com.android.base.utils.FastClickUtils;
 import com.android.base.utils.IntentUtils;
 import com.android.base.utils.LogUtils;
 import com.android.base.utils.ToastUtils;
 import com.see.you.plan.R;
-import com.see.you.plan.app.RealApplication;
 import com.see.you.plan.test.component.ComponentActivity;
 import com.see.you.plan.test.fragment.FragActivity;
 import com.see.you.plan.test.load.LoadActivity;
+
+import io.storage.Storage;
 
 public class MainActivity extends MvpActivity<MainPresenter> implements MainView, View.OnClickListener {
 
@@ -32,6 +29,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     private Button fragment;
     private Button component;
     private Button load;
+    private Button storage;
     private LoginView login_view;
 
     @Override
@@ -56,11 +54,13 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
         fragment = findViewById(R.id.fragment);
         component = findViewById(R.id.component);
         load = findViewById(R.id.load);
+        storage = findViewById(R.id.storage);
         login_view = findViewById(R.id.login_view);
     }
 
     @Override
     protected void initData() {
+        Storage.get(this).writeInDatabase("key", "12345678");
     }
 
     @Override
@@ -71,6 +71,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
         fragment.setOnClickListener(this);
         component.setOnClickListener(this);
         load.setOnClickListener(this);
+        storage.setOnClickListener(this);
         login_view.setMobActionListener(new MobActionListener() {
             @Override
             public void onComplete() {
@@ -151,6 +152,9 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                 break;
             case R.id.load:
                 IntentUtils.startActivity(LoadActivity.class);
+                break;
+            case R.id.storage:
+                LogUtils.i("========", Storage.get(this).readStringFromDatabase("key"));
                 break;
         }
     }

@@ -26,6 +26,11 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
+        <!-- Storage -->
+        <meta-data
+            android:name="io.storage.StorageModule"
+            android:value="com.android.base.BaseStorageModule" />
+
     </application>
 
 </manifest>

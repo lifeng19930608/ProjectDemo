@@ -62,12 +62,12 @@
 -dontwarn rx.**
 -keep class rx.**{*;}
 
-# okhttp3
+# Okhttp3
 -keep class okhttp3.** { *; }
 -keep interface okhttp3.** { *; }
 -dontwarn okhttp3.**
 
-# okio
+# Okio
 -keep class sun.misc.Unsafe { *; }
 -dontwarn java.nio.file.*
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
