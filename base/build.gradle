@@ -44,6 +44,12 @@ dependencies {
     //bugly
     api 'com.tencent.bugly:crashreport:3.0.1'
     api 'com.tencent.bugly:nativecrashreport:3.3.1'
+    //glide
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    api 'jp.wasabeef:glide-transformations:4.0.0'
+    //解决androidx和glide不兼容的问题
+    annotationProcessor 'androidx.annotation:annotation:1.1.0'
 }
 
 

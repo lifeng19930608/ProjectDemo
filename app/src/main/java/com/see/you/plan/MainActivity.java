@@ -16,6 +16,7 @@ import com.android.base.utils.LogUtils;
 import com.android.base.utils.ToastUtils;
 import com.see.you.plan.component.ComponentActivity;
 import com.see.you.plan.fragment.FragActivity;
+import com.see.you.plan.load.LoadActivity;
 
 public class MainActivity extends MvpActivity<MainPresenter> implements MainView, View.OnClickListener {
 
@@ -24,6 +25,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     private Button network;
     private Button fragment;
     private Button component;
+    private Button load;
     private LoginView login_view;
 
     @Override
@@ -47,6 +49,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
         network = findViewById(R.id.network);
         fragment = findViewById(R.id.fragment);
         component = findViewById(R.id.component);
+        load = findViewById(R.id.load);
         login_view = findViewById(R.id.login_view);
     }
 
@@ -61,6 +64,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
         network.setOnClickListener(this);
         fragment.setOnClickListener(this);
         component.setOnClickListener(this);
+        load.setOnClickListener(this);
         login_view.setMobActionListener(new MobActionListener() {
             @Override
             public void onComplete() {
@@ -138,6 +142,9 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                 break;
             case R.id.component:
                 IntentUtils.startActivity(ComponentActivity.class);
+                break;
+            case R.id.load:
+                IntentUtils.startActivity(LoadActivity.class);
                 break;
         }
     }
