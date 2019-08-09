@@ -50,7 +50,7 @@ public class LoginView extends LinearLayout implements View.OnClickListener {
     }
 
     private void init(final Context context) {
-        addView(LayoutInflater.from(context).inflate(R.layout.view_login, null), new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+        addView(LayoutInflater.from(context).inflate(R.layout.layout_login, null), new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         TextView tv_login_sina_weibo = findViewById(R.id.tv_login_sina_weibo);
         TextView tv_login_wechat = findViewById(R.id.tv_login_wechat);

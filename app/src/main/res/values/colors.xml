@@ -22,8 +22,6 @@
     <!--10% : 1A-->
     <!--5% : 0D-->
     <!--0% : 00-->
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
     <color name="text_color_9">#999999</color>
     <color name="line_color">#F5F5F5</color>
 </resources>

@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.base.mvp.BaseModel;
-import com.android.base.mvp.MvpActivity;
 import com.android.base.mob.listener.MobActionListener;
 import com.android.base.mob.login.LoginView;
 import com.android.base.mob.share.ShareBottomDialog;
 import com.android.base.moudle.NewVersionBean;
+import com.android.base.mvp.BaseModel;
+import com.android.base.mvp.MvpActivity;
 import com.android.base.utils.FastClickUtils;
 import com.android.base.utils.IntentUtils;
 import com.android.base.utils.LogUtils;
@@ -52,7 +52,6 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
 
     @Override
     protected void initData() {
-
     }
 
     @Override
@@ -131,6 +130,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                 break;
             case R.id.network:
                 presenter.version("1.0", 1);
+                presenter.version("2.0", 2);
+                presenter.version("3.0", 3);
                 break;
             case R.id.fragment:
                 IntentUtils.startActivity(FragActivity.class);

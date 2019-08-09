@@ -1,7 +1,6 @@
 package com.android.base.base;
 
 import android.app.ActivityManager;
-import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.base.load.LoadingDialog;
 import com.android.base.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,7 +34,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     private MainHandler mainHandler;
     private boolean alive;
     private boolean foreground;
-    private ProgressDialog progressDialog;
+    private LoadingDialog loadingDialog;
+    private int loadNum;//网络请求数量
 
     @CallSuper
     @Override
@@ -142,16 +143,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void showProgressDialog() {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage("加载中");
+        loadNum++;
+        //第一个加载动画执行，后续的网络接口不做任何操作
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog(getActivity());
+            loadingDialog.setCancelable(false);
+            loadingDialog.show();
         }
-        progressDialog.show();
     }
 
     public void dismissProgressDialog() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
+        loadNum--;
+        if (loadingDialog != null && loadNum == 0) {//此时代表最后一个网络请求已经完成
+            loadingDialog.dismiss();
+            loadingDialog = null;
         }
     }
 
