@@ -11,7 +11,12 @@ package com.android.base.config;
 public class Key {
 
     public static class PrefKey {
+        public static final String ENVIRONMENT = "app_environment";
         public static final String UID = "uid";
         public static final String TOKEN = "token";
+    }
+
+    public static class META_DATA {
+        public static final String RELEASE_TYPE = "RELEASE_TYPE";
     }
 }

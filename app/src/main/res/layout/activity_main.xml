@@ -60,6 +60,27 @@
             android:layout_marginTop="10dp"
             android:text="数据库" />
 
+
+        <Button
+            android:id="@+id/change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="多环境切换" />
+
+        <TextView
+            android:id="@+id/show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spSettingsEnv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="144dp"
+            android:visibility="gone" />
+
     </LinearLayout>
 
     <com.android.base.mob.login.LoginView

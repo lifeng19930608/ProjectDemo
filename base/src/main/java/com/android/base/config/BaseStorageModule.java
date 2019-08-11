@@ -21,7 +21,19 @@ public class BaseStorageModule implements StorageModule {
     @Override
     public StorageConfiguration applyConfiguration(Context context) {
 
-        String databaseName = "StorageModule";
+        String databaseName;
+        switch (Environment.getEnv()) {
+            default:
+            case Environment.ENV_PRODUCT:
+                databaseName = "StorageModule";
+                break;
+            case Environment.ENV_TEST:
+                databaseName = "StorageModule_test";
+                break;
+            case Environment.ENV_DEVELOP:
+                databaseName = "StorageModule_develop";
+                break;
+        }
         File databaseFolder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             databaseFolder = context.getExternalFilesDirs(null)[0];

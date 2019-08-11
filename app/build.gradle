@@ -30,6 +30,20 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "release"
+    productFlavors {
+        develop {
+            dimension "release"
+            manifestPlaceholders.put("RELEASE_TYPE", "develop")
+        }
+        product {
+            dimension "release"
+            manifestPlaceholders.put("RELEASE_TYPE", "product")
+        }
+
+    }
+
     signingConfigs {
         release {
             keyAlias 'dao'

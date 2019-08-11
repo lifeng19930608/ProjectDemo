@@ -2,8 +2,15 @@ package com.see.you.plan.test;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 
+import com.android.base.config.Environment;
+import com.android.base.config.HttpProtocol;
 import com.android.base.mob.listener.MobActionListener;
 import com.android.base.mob.login.LoginView;
 import com.android.base.mob.share.ShareBottomDialog;
@@ -21,7 +28,9 @@ import com.see.you.plan.test.component.ComponentActivity;
 import com.see.you.plan.test.fragment.FragActivity;
 import com.see.you.plan.test.load.LoadActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import io.storage.Storage;
 
@@ -34,6 +43,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     private Button component;
     private Button load;
     private Button storage;
+    private Button change;
+    private TextView show;
     private LoginView login_view;
 
     @Override
@@ -59,6 +70,8 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
         component = findViewById(R.id.component);
         load = findViewById(R.id.load);
         storage = findViewById(R.id.storage);
+        change = findViewById(R.id.change);
+        show = findViewById(R.id.show);
         login_view = findViewById(R.id.login_view);
     }
 
@@ -73,6 +86,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                 }
             }
         });
+        initEnvChange();
     }
 
     @Override
@@ -84,6 +98,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
         component.setOnClickListener(this);
         load.setOnClickListener(this);
         storage.setOnClickListener(this);
+        change.setOnClickListener(this);
         login_view.setMobActionListener(new MobActionListener() {
             @Override
             public void onComplete() {
@@ -176,7 +191,91 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
             case R.id.storage:
                 LogUtils.i("========", Storage.get(this).readStringFromDatabase("key"));
                 break;
+            case R.id.change:
+                show.setText(Environment.getEnv() + HttpProtocol.Domain.getBaseUrl());
+                break;
         }
     }
+
+    private void initEnvChange() {
+        Spinner spSettingsEnv = findViewById(R.id.spSettingsEnv);
+        if (Environment.getReleaseType().equals(Environment.RELEASE_TYPE_DEVELOP)) {
+            // 内部开发版
+            final List<String> envList = new ArrayList<>();
+            envList.add("开发环境");
+            envList.add("测试环境");
+            envList.add("线上环境");
+            SpinnerAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, envList);
+            spSettingsEnv.setAdapter(adapter);
+            int position = 1;
+            switch (Environment.getEnv()) {
+                case Environment.ENV_DEVELOP:
+                    position = 0;
+                    break;
+                case Environment.ENV_TEST:
+                    position = 1;
+                    break;
+                case Environment.ENV_PRODUCT:
+                    position = 2;
+                    break;
+            }
+            spSettingsEnv.setSelection(position);
+            spSettingsEnv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
+
+                    int prePosition = 1;
+                    switch (Environment.getEnv()) {
+                        case Environment.ENV_DEVELOP:
+                            prePosition = 0;
+                            break;
+                        case Environment.ENV_TEST:
+                            prePosition = 1;
+                            break;
+                        case Environment.ENV_PRODUCT:
+                            prePosition = 2;
+                            break;
+                    }
+
+                    if (prePosition != position) {
+                        if (isAlive()) {
+                            switch (position) {
+                                case 0:
+                                    Environment.setEnv(Environment.ENV_DEVELOP);
+                                    ToastUtils.shortShow("已切换到开发环境, 请重新打开APP");
+                                    break;
+                                case 1:
+                                    Environment.setEnv(Environment.ENV_TEST);
+                                    ToastUtils.shortShow("已切换到测试环境，请重新打开APP");
+                                    break;
+                                case 2:
+                                    Environment.setEnv(Environment.ENV_PRODUCT);
+                                    ToastUtils.shortShow("已切换到正式环境，请重新打开APP");
+                                    break;
+                            }
+                            getMainHandler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    finish();
+                                    System.exit(0);
+                                    android.os.Process.killProcess(android.os.Process.myPid());
+                                }
+                            },500);
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            spSettingsEnv.setVisibility(View.VISIBLE);
+        } else {
+            spSettingsEnv.setVisibility(View.GONE);
+        }
+    }
+
 
 }

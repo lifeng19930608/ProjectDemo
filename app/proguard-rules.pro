@@ -16,6 +16,9 @@
 -keep public class * extends android.content.BroadcastReceiver
 -keep public class * extends android.preference.Preference
 -keep public class * extends android.content.ContentProvider
+-keep public class * extends androidx.appcompat.app.AppCompatActivity
+-keep public class * extends androidx.fragment.app.Fragment
+-keep public class * extends androidx.versionedparcelable.VersionedParcelable
 
 -keepattributes SourceFile,LineNumberTable
 -keepattributes Signature
@@ -128,3 +131,8 @@
 -keep class * extends cn.jpush.android.helpers.JPushMessageReceiver { *; }
 -dontwarn cn.jiguang.**
 -keep class cn.jiguang.** { *; }
+
+# Base
+-keep class com.android.base.moudle.**{*;}
+-keep class com.android.base.event.**{*;}
+-keep class com.android.base.base.**{*;}

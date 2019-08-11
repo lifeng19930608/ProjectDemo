@@ -48,6 +48,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- 发行类型 -->
+        <meta-data
+            android:name="RELEASE_TYPE"
+            android:value="${RELEASE_TYPE}" />
+
         <activity android:name=".test.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

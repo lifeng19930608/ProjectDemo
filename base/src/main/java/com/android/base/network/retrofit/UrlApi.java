@@ -1,5 +1,6 @@
 package com.android.base.network.retrofit;
 
+import com.android.base.config.HttpProtocol;
 import com.android.base.moudle.LoveLedgerDataBean;
 import com.android.base.mvp.BaseModel;
 import com.android.base.moudle.NewVersionBean;
@@ -22,8 +23,8 @@ import retrofit2.http.QueryMap;
 
 public interface UrlApi {
 
-    String BASE_URL = "http://112.74.179.118:8088/missyou_app_api/";
-    String BASE_URL_H5 = "";
+    String BASE_URL = HttpProtocol.Domain.getBaseUrl();
+    String BASE_URL_H5 = HttpProtocol.Domain.getBaseH5Url();
 
     @POST("VersionNo/findNewVersion")
     Observable<BaseModel<NewVersionBean>> checkUpdate(@Query("version") String version, @Query("platform") int platform);
@@ -36,7 +37,6 @@ public interface UrlApi {
      */
     @GET("loveLedger/list")
     Observable<BaseModel<LoveLedgerDataBean>> queryLoveLedger(@QueryMap HashMap<String, Object> params);
-
 
 
 }
