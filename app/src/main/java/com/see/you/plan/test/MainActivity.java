@@ -7,17 +7,21 @@ import android.widget.Button;
 import com.android.base.mob.listener.MobActionListener;
 import com.android.base.mob.login.LoginView;
 import com.android.base.mob.share.ShareBottomDialog;
+import com.android.base.moudle.LoveLedgerDataBean;
 import com.android.base.moudle.NewVersionBean;
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.MvpActivity;
 import com.android.base.utils.FastClickUtils;
 import com.android.base.utils.IntentUtils;
 import com.android.base.utils.LogUtils;
+import com.android.base.utils.PermissionUtils;
 import com.android.base.utils.ToastUtils;
 import com.see.you.plan.R;
 import com.see.you.plan.test.component.ComponentActivity;
 import com.see.you.plan.test.fragment.FragActivity;
 import com.see.you.plan.test.load.LoadActivity;
+
+import java.util.HashMap;
 
 import io.storage.Storage;
 
@@ -61,6 +65,14 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     @Override
     protected void initData() {
         Storage.get(this).writeInDatabase("key", "12345678");
+        PermissionUtils.getInstance().request(getActivity(), PermissionUtils.Type.STORAGE, new PermissionUtils.Callback() {
+            @Override
+            public void onResult(boolean grant) {
+                if (!grant) {
+                    PermissionUtils.getInstance().showDialog(getActivity());
+                }
+            }
+        });
     }
 
     @Override
@@ -90,10 +102,13 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
         });
     }
 
+
     @Override
-    public void getDataSuccess(BaseModel model) {
+    public <T> void getDataSuccess(BaseModel model, T t) {
         LogUtils.i("=========", "2222222222" + model.status);
-        NewVersionBean bean = (NewVersionBean) model.data;
+//        NewVersionBean bean = (NewVersionBean) model.data;
+//        LoveLedgerDataBean bean = (LoveLedgerDataBean) model.data;
+//        LogUtils.i("=======返回数据", bean.pageNo + "" + bean.total);
         ToastUtils.longShow(model.message);
     }
 
@@ -141,8 +156,13 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                 break;
             case R.id.network:
                 presenter.version("1.0", 1);
-                presenter.version("2.0", 2);
-                presenter.version("3.0", 3);
+//                presenter.version("2.0", 2);
+//                presenter.version("3.0", 3);
+//                presenter.code(1, "18702143494", 2);
+                HashMap<String, Object> params = new HashMap<>();
+                params.put("pageNo", 1);
+                params.put("pageSize", 20);
+                presenter.getList(params);
                 break;
             case R.id.fragment:
                 IntentUtils.startActivity(FragActivity.class);

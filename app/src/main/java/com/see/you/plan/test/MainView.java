@@ -13,7 +13,7 @@ import com.android.base.mvp.BaseView;
 
 public interface MainView extends BaseView {
 
-    void getDataSuccess(BaseModel model);
+    <T> void getDataSuccess(BaseModel model, T t);
 
     void getDataFail(String msg);
 }

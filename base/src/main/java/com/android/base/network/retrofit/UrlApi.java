@@ -1,11 +1,16 @@
 package com.android.base.network.retrofit;
 
+import com.android.base.moudle.LoveLedgerDataBean;
 import com.android.base.mvp.BaseModel;
 import com.android.base.moudle.NewVersionBean;
 
+import java.util.HashMap;
+
 import io.reactivex.Observable;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  * author  : 指尖的力量
@@ -22,5 +27,16 @@ public interface UrlApi {
 
     @POST("VersionNo/findNewVersion")
     Observable<BaseModel<NewVersionBean>> checkUpdate(@Query("version") String version, @Query("platform") int platform);
+
+    @GET("smsCodes")
+    Observable<BaseModel<Object>> sendVerifyCode(@Query("countryMode") int countryMode, @Query("mobile") String mobile, @Query("type") int type);
+
+    /**
+     * 我的爱心列表——ok
+     */
+    @GET("loveLedger/list")
+    Observable<BaseModel<LoveLedgerDataBean>> queryLoveLedger(@QueryMap HashMap<String, Object> params);
+
+
 
 }

@@ -5,6 +5,7 @@ import com.google.gson.JsonSyntaxException;
 
 import java.net.ConnectException;
 import java.net.NoRouteToHostException;
+import java.net.SocketTimeoutException;
 
 import io.reactivex.observers.DisposableObserver;
 import retrofit2.HttpException;
@@ -49,8 +50,10 @@ public abstract class ApiCallBack<M> extends DisposableObserver<M> {
             onFailure(ServerCode.CONNECT_ERROR, ServerCode.NETWORK_ERROR_2);
         } else if (e instanceof JsonSyntaxException) {
             onFailure(ServerCode.JSON_SYNTAX, ServerCode.NETWORK_ERROR_3);
+        } else if (e instanceof SocketTimeoutException) {
+            onFailure(ServerCode.CONNECT_TIMEOUT, ServerCode.NETWORK_ERROR_4);
         } else {
-            onFailure(ServerCode.UNKNOWN_ERROR, ServerCode.NETWORK_ERROR_4);
+            onFailure(ServerCode.UNKNOWN_ERROR, ServerCode.NETWORK_ERROR_5);
         }
         onFinish();
     }

@@ -35,7 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private boolean alive;
     private boolean foreground;
     private LoadingDialog loadingDialog;
-    private int loadNum;//网络请求数量
+    private int loadNum = 0;//网络请求数量
 
     @CallSuper
     @Override
