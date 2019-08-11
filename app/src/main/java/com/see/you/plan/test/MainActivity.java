@@ -9,6 +9,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import com.android.base.base.BaseEvent;
 import com.android.base.config.Environment;
 import com.android.base.config.HttpProtocol;
 import com.android.base.mob.listener.MobActionListener;
@@ -27,6 +28,10 @@ import com.see.you.plan.R;
 import com.see.you.plan.test.component.ComponentActivity;
 import com.see.you.plan.test.fragment.FragActivity;
 import com.see.you.plan.test.load.LoadActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,6 +92,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
             }
         });
         initEnvChange();
+        EventBus.getDefault().post(new BaseEvent());
     }
 
     @Override
@@ -120,7 +126,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
 
     @Override
     public <T> void getDataSuccess(BaseModel model, T t) {
-        LogUtils.i("=========", "2222222222" + model.status);
+        LogUtils.i("=========", "状态码：" + model.status + "信息：" + model.message);
 //        NewVersionBean bean = (NewVersionBean) model.data;
 //        LoveLedgerDataBean bean = (LoveLedgerDataBean) model.data;
 //        LogUtils.i("=======返回数据", bean.pageNo + "" + bean.total);
@@ -174,10 +180,10 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
 //                presenter.version("2.0", 2);
 //                presenter.version("3.0", 3);
 //                presenter.code(1, "18702143494", 2);
-                HashMap<String, Object> params = new HashMap<>();
-                params.put("pageNo", 1);
-                params.put("pageSize", 20);
-                presenter.getList(params);
+//                HashMap<String, Object> params = new HashMap<>();
+//                params.put("pageNo", 1);
+//                params.put("pageSize", 20);
+//                presenter.getList(params);
                 break;
             case R.id.fragment:
                 IntentUtils.startActivity(FragActivity.class);
@@ -260,7 +266,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                                     System.exit(0);
                                     android.os.Process.killProcess(android.os.Process.myPid());
                                 }
-                            },500);
+                            }, 500);
                         }
 
                     }
@@ -277,5 +283,9 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
         }
     }
 
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(BaseEvent event) {
+        super.onEvent(event);
+        LogUtils.i("=========", "接收到传递的事件");
+    }
 }
