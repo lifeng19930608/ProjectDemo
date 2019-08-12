@@ -1,4 +1,4 @@
-package com.android.base.moudle;
+package com.android.base.model;
 
 public class LoveRowsBean {
 

@@ -1,9 +1,9 @@
 package com.see.you.plan.test;
 
-import com.android.base.moudle.LoveLedgerDataBean;
+import com.android.base.model.LoveLedgerDataBean;
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.BasePresenter;
-import com.android.base.moudle.NewVersionBean;
+import com.android.base.model.NewVersionBean;
 import com.android.base.network.retrofit.ApiCallBack;
 
 import java.util.HashMap;

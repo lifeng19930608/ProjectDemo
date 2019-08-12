@@ -15,8 +15,6 @@ import com.android.base.config.HttpProtocol;
 import com.android.base.mob.listener.MobActionListener;
 import com.android.base.mob.login.LoginView;
 import com.android.base.mob.share.ShareBottomDialog;
-import com.android.base.moudle.LoveLedgerDataBean;
-import com.android.base.moudle.NewVersionBean;
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.MvpActivity;
 import com.android.base.utils.FastClickUtils;
@@ -34,7 +32,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import io.storage.Storage;

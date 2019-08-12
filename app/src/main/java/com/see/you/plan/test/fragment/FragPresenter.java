@@ -1,6 +1,6 @@
 package com.see.you.plan.test.fragment;
 
-import com.android.base.moudle.NewVersionBean;
+import com.android.base.model.NewVersionBean;
 import com.android.base.mvp.BaseModel;
 import com.android.base.mvp.BasePresenter;
 import com.android.base.network.retrofit.ApiCallBack;

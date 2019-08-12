@@ -1,4 +1,4 @@
-package com.android.base.moudle;
+package com.android.base.model;
 
 import java.util.List;
 

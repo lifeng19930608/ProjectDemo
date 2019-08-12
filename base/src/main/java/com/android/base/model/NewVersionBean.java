@@ -1,4 +1,4 @@
-package com.android.base.moudle;
+package com.android.base.model;
 
 /**
  * author  : 指尖的力量

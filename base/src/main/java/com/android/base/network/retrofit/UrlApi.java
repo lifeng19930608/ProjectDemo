@@ -1,9 +1,9 @@
 package com.android.base.network.retrofit;
 
 import com.android.base.config.HttpProtocol;
-import com.android.base.moudle.LoveLedgerDataBean;
+import com.android.base.model.LoveLedgerDataBean;
 import com.android.base.mvp.BaseModel;
-import com.android.base.moudle.NewVersionBean;
+import com.android.base.model.NewVersionBean;
 
 import java.util.HashMap;
 

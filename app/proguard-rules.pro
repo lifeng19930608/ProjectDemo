@@ -144,7 +144,7 @@
 -keep class cn.jiguang.** { *; }
 
 # Base
--keep class com.android.base.moudle.**{*;}
+-keep class com.android.base.model.**{*;}
 -keep class com.android.base.event.**{*;}
 -keep class com.android.base.base.**{*;}
 -keep class com.android.base.mvp.**{*;}
