@@ -147,3 +147,4 @@
 -keep class com.android.base.moudle.**{*;}
 -keep class com.android.base.event.**{*;}
 -keep class com.android.base.base.**{*;}
+-keep class com.android.base.mvp.**{*;}
